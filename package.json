@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/pcsanchez/Entrepreneurship-Network#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.8.10"
   }
 }
