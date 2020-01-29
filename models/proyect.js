@@ -8,4 +8,18 @@ let proyectCollection = mongoose.Schema( {
     description: {type: String}
 });
 
-const Proyect = mongoose.model('proyects', proyectCollection);
+const Proyect = mongoose.model('proyect', proyectCollection);
+
+let ProyectController = {
+    getAll: function() {
+        return Proyect.find()
+            .then(proyects => {
+                return proyects;
+            })
+            .catch(error => {
+                throw Error(error);
+            });
+    }
+}
+
+module.exports = {ProyectController};
