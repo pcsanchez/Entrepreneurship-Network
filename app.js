@@ -3,28 +3,21 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-let jsonParser = bodyParser.json();
 let app = express();
 
-let {ProyectController} = require('./models/proyect')
+// Routes
+let userRoutes = require('./routes/users');
+let authRoutes = require('./routes/auth');
+let proyectRoutes = require('./routes/proyects');
+
 let {DATABASE_URL, PORT} = require('./config');
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
 
-app.get('/test-api/proyects', jsonParser, (req, res) => {
-    ProyectController.getAll()
-        .then(proyects => {
-            return res.status(200).json(proyects);
-        })
-        .catch(error => {
-            console.log(error);
-            res.statusMessage = "Database error";
-            return res.status(500).send();
-        })
-});
-
-app.post
+app.use('/api/users', userRoutes);
+app.use('/api', authRoutes);
+app.use('/api/proyects', proyectRoutes);
 
 let server;
 
