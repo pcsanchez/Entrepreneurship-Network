@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 
+const {ProyectController} = require('../models/proyect')
+
 middleware = {
     isLoggedIn: function(req, res, next) {
         let token = req.headers.authorization;
