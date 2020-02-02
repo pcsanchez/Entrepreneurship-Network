@@ -6,6 +6,7 @@ const router = express.Router();
 const jsonParser = bodyParser.json();
 
 const {ProyectController} = require('../models/proyect');
+const {UserController} = require('../models/user');
 const ServerError = require('../error');
 const middleware = require('../middleware')
 
@@ -64,6 +65,63 @@ router.get('/:id', jsonParser, middleware.isLoggedIn, (req, res) => {
                 res.statusMessage = 'DB error';
                 return res.status(500).send();
             }
+        })
+})
+
+router.get('/owner/:id', jsonParser, middleware.isLoggedIn, (req, res) => {
+    const id = req.params.id;
+
+    if(!id) {
+        res.statusMessage = 'No owner id was given';
+        return res.status(406).send();
+    }
+
+    ProyectController.getByOwnerId(id)
+        .then(proyects => {
+            return res.status(200).json(proyects);
+        })
+        .catch(error => {
+            console.log(error);
+            res.statusMessage = 'DB error';
+            return res.status(500).send();
+        })
+})
+
+router.get('/exclude/:id', jsonParser, middleware.isLoggedIn, (req, res) => {
+    const id = req.params.id;
+
+    if(!id) {
+        res.statusMessage = 'No id was given';
+        return res.status(406).send();
+    }
+
+    ProyectController.getAllExcludeMembership(id)
+        .then(proyects => {
+            return res.status(200).json(proyects);
+        })
+        .catch(error => {
+            console.log(error);
+            res.statusMessage = 'DB error';
+            return res.status(500).send();
+        })
+})
+
+router.get('/team/:id', jsonParser, middleware.isLoggedIn, (req, res) => {
+    const id = req.params.id;
+
+    if(!id) {
+        res.statusMessage = 'No id was given';
+        return res.status(406).send();
+    }
+
+    ProyectController.getByTeamMembership(id)
+        .then(proyects => {
+            return res.status(200).json(proyects);
+        })
+        .catch(error => {
+            console.log(error);
+            res.statusMessage = 'DB error';
+            return res.status(500).send();
         })
 })
 

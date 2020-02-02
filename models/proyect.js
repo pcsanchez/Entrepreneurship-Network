@@ -59,6 +59,33 @@ const ProyectController = {
                 throw Error(error);
             });
     },
+    getByOwnerId: function(id) {
+        return Proyect.find({owner: id}).populate('owner', '-password')
+            .then(proyects => {
+                return proyects;
+            })
+            .catch(error => {
+                throw Error(error);
+            })
+    },
+    getByTeamMembership: function(id) {
+        return Proyect.find({teamMembers: id}).populate('owner', '-password')
+            .then(proyects => {
+                return proyects;
+            })
+            .catch(error => {
+                throw Error(error);
+            })
+    },
+    getAllExcludeMembership: function(id) {
+        return Proyect.find({owner: {$ne: id}, teamMembers: {$ne: id}}).populate('owner', '-password')
+            .then(proyects => {
+                return proyects;
+            })
+            .catch(error => {
+                throw Error(error);
+            })
+    },
     create: function(newProyect) {
         return Proyect.create(newProyect)
             .then(nProyect => {

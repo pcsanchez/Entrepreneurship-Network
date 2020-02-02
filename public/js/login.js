@@ -33,6 +33,7 @@ function watchForm() {
 function login(response) {
     localStorage.setItem('token', response.token);
     localStorage.setItem('userID', response.id);
+    window.location.href = 'feed.html';
 }
 
 function init() {
