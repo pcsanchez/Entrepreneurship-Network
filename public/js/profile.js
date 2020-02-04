@@ -36,9 +36,9 @@ function displayData(response) {
         success: function(responseJSON) {
             responseJSON.forEach(pr => {
                 $('#pills-home').append(`
-                    <div class="proyect">
-                        <h1 value="${pr._id}">${pr.name}</h1>
-                        <p>${pr.description}</p>
+                    <div class="proyect click" value="${pr._id}">
+                        <h1 class="click" value="${pr._id}">${pr.name}</h1>
+                        <p class="click" value="${pr._id}">${pr.description}</p>
                     </div>
                 `);
             })
@@ -59,7 +59,10 @@ function displayData(response) {
         success: function(responseJSON) {
             responseJSON.forEach(pr => {
                 $('#pills-profile').append(`
-                    <h1>${pr.name}</h1>
+                    <div class="proyect click" value="${pr._id}">
+                        <h1 class="click" value="${pr._id}">${pr.name}</h1>
+                        <p class="click" value="${pr._id}">${pr.description}</p>
+                    </div>
                 `);
             })
         },
@@ -138,6 +141,21 @@ function watchButtons() {
         const proyectId = $(event.target).attr('value');
         removeInvite(proyectId);
     })
+
+    $('#plusBtn').on('click', event => {
+        event.preventDefault();
+        window.location.href = 'new.html';
+    })
+
+    $('.logo').on('click', event => {
+        event.preventDefault();
+        window.location.href = 'feed.html';
+    })
+
+    $('#profileBtn').on('click', event => {
+        event.preventDefault();
+        window.location.href = 'profile.html';
+    })
 }
 
 function removeInvite(proyect) {
@@ -164,9 +182,28 @@ function removeInvite(proyect) {
     })
 }
 
+function watchProyects() {
+    $('#pills-home').on('click', '.click', event => {
+        event.preventDefault();
+
+        const id = $(event.target).attr('value');
+        localStorage.setItem('proyectID', id);
+        window.location.href = 'proyect.html';
+    })
+
+    $('#pills-profile').on('click', '.click', event => {
+        event.preventDefault();
+
+        const id = $(event.target).attr('value');
+        localStorage.setItem('proyectID', id);
+        window.location.href = 'proyect.html';
+    })
+}
+
 function init() {
     fetchUser();
     watchButtons();
+    watchProyects();
 }
 
 init();

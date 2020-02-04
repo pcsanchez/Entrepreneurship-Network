@@ -110,6 +110,10 @@ function displaySearchedProyects(container, response, term) {
         `)
     } else {
         results.forEach((el) => {
+            cats = "";
+            el.categories.forEach(c => {
+                cats += `<span class="pcat">${c}</span> `
+            })
             $(container).append(`
                 <div class="card proy">
                     <img src="${el.image}" class="hoverable card-img-top" alt="ProyectImg" value="${el._id}">
@@ -117,7 +121,7 @@ function displaySearchedProyects(container, response, term) {
                         <h3 class="hoverable card-title" value="${el._id}">${el.name}</h5>
                         <p class="hoverable card-text pdesc" value="${el._id}">${el.description}</p>
                         <p class="card-text">By ${el.owner.firstName} ${el.owner.lastName}</p>
-                        <p class="pcat card-text">${el.categories[0]}</p>
+                        <p class="pcat card-text">${cats}</p>
                     </div>
                 </div>
             `)
@@ -145,6 +149,23 @@ function watchButtons() {
     $('#profileBtn').on('click', event => {
         event.preventDefault();
         window.location.href = 'profile.html';
+    })
+
+    $('#popularProyects').on('click', '.pcat', event => {
+        $.ajax({
+            url: '/api/proyects/category/' + $(event.target).html(),
+            method: 'GET',
+            dataType: 'json',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            },
+            success: function(responseJSON) {
+                displayProyects($('#popularProyects'), responseJSON);
+            },
+            error: function(error) {
+                console.log(error);
+            } 
+        })
     })
 }
 

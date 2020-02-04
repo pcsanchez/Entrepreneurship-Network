@@ -68,8 +68,27 @@ function sendInvites(response) {
 
 }
 
+function watchButtons() {
+    $('.logo').on('click', event => {
+        console.log('clicked');
+        event.preventDefault();
+        window.location.href = 'feed.html';
+    })
+
+    $('#profileBtn').on('click', event => {
+        event.preventDefault();
+        window.location.href = 'profile.html';
+    })
+
+    $('#plusBtn').on('click', event => {
+        event.preventDefault();
+        window.location.href = 'new.html';
+    })
+}
+
 function init() {
     watchForm();
+    watchButtons();
 }
 
 init();

@@ -22,8 +22,8 @@ router.get('/all', jsonParser, middleware.isLoggedIn, (req, res) => {
         })
 })
 
-router.get('/category', jsonParser, middleware.isLoggedIn, (req, res) => {
-    const category = req.query.category;
+router.get('/category/:cat', jsonParser, middleware.isLoggedIn, (req, res) => {
+    const category = req.params.cat;
 
     if(!category) {
         res.statusMessage = 'No category given in request';
@@ -187,9 +187,9 @@ router.put('/update/:id', jsonParser, middleware.isLoggedIn, (req ,res) => {
                     //     return res.status(403).send();
                     // }
 
-                    const {name, description, image, categories, teamMembers} = req.body;
+                    const {name, description, image, categories, teamMembers, comments} = req.body;
 
-                    if(!name && !description && !image && !categories && !teamMembers) {
+                    if(!name && !description && !image && !categories && !teamMembers && !comments) {
                         res.statusMessage = 'No parameters were changed for the update';
                         return res.status(409).send();
                     }
@@ -214,6 +214,10 @@ router.put('/update/:id', jsonParser, middleware.isLoggedIn, (req ,res) => {
 
                     if(teamMembers) {
                         updatedProyect.teamMembers = teamMembers;
+                    }
+
+                    if(comments) {
+                        updatedProyect.comments = comments;
                     }
 
                     return ProyectController.update(id, updatedProyect);

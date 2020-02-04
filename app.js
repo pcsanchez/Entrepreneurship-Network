@@ -9,6 +9,7 @@ let app = express();
 let userRoutes = require('./routes/users');
 let authRoutes = require('./routes/auth');
 let proyectRoutes = require('./routes/proyects');
+let commentRoutes = require('./routes/comments')
 
 let {DATABASE_URL, PORT} = require('./config');
 
@@ -18,6 +19,7 @@ app.use(morgan('dev'));
 app.use('/api/users', userRoutes);
 app.use('/api', authRoutes);
 app.use('/api/proyects', proyectRoutes);
+app.use('/api/comments', commentRoutes);
 
 let server;
 

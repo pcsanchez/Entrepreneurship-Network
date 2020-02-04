@@ -15,13 +15,10 @@ let proyectCollection = mongoose.Schema( {
         ref: 'users'
     }],
     categories: [{type: String}],
-    fiveStars: 0,
-    fourStars: 0,
-    threeStars: 0,
-    twoStars: 0,
-    oneStars: 0,
-    zeroStars: 0,
-    
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'comments'
+    }]
 });
 
 const Proyect = mongoose.model('proyects', proyectCollection);
@@ -37,7 +34,10 @@ const ProyectController = {
             });
     },
     getById: function(id) {
-        return Proyect.findById(id).populate('owner', '-password')
+        return Proyect.findById(id).populate('owner', '-password').populate('teamMembers').populate({
+            path: 'comments',
+            populate: {path: 'author'}
+        })
             .then(proyect => {
                 return proyect;
             })
