@@ -16,9 +16,6 @@
     </div>
     <nav class="navbar navbar-dark bg-dark d-flex flex-row justify-content-start">
         <a href="#" class="navbar-brand logo" id="logo">Delta</a>
-        <div class="navbar-nav">
-            <a href="#" class="nav-item nav-link active ml-2">Explore</a>
-        </div>
         <div class="navbar-nav d-flex flex-row" id="profile">
             <a href="#" class="nav-item nav-link active mr-3" id="plusBtn"><i class="fas fa-plus"></i></a>
             <a href="#" id="profileBtn" class="nav-item nav-link active">Profile</a>
@@ -26,9 +23,13 @@
     </nav>
     <main>
         <div class="userInfo">
+          <div class="userContent">
             <h1 id="userName"></h1>
             <h4 id="userBio"></h4>
+          </div>
+          <div class="editDiv">
             <button type="button" data-toggle="modal" data-target="#exampleModal" id="edit" class="btn btn-success">Edit Profile</button>
+          </div>
         </div>
 
         <hr>
@@ -44,11 +45,14 @@
                 <li class="nav-item">
                   <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Invites</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="requests-tab" data-toggle="pill" href="#requests" role="tab" aria-controls="pills-request" aria-selected="false">Requests</a></li>
               </ul>
               <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">Owned Proyects</div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">Collaborations</div>
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">Invites</div>
+                <div class="tab-pane fade" id="requests" role="tabpanel" aria-labelledby="requests-tab"></div>
               </div>
         </div>
     </main>

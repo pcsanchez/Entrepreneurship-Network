@@ -10,6 +10,19 @@ const userCollection = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'proyects'
     }],
+    pendingRequests: [{
+        proyect: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'proyects'
+        },
+        sender: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'users'
+        },
+        name: {type: String},
+        proyectName: {type: String}
+
+    }],
     email: {type: String},
     password: String
 });

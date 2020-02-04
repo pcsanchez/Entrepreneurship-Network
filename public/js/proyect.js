@@ -84,11 +84,12 @@ function displayGenericProyect(response) {
             <h4>Comments:</h4>
             ${comments}
             <form id="comments">
-            <div class="form-group">
-                <input placeholder="Leave a comment" class="form-control" type="text" id="commentText" required>
-                <button id="commentBtn" type="submit" class="btn btn-primary">Comment!</button>
-            </div>
-        </form>
+                <div class="form-group">
+                    <input placeholder="Leave a comment" class="form-control" type="text" id="commentText" required>
+                    <button id="commentBtn" type="submit" class="btn btn-primary">Comment!</button>
+                </div>
+            </form>
+            <button id="join" type="text" class="btn btn-secondary">Ask to Join!</button>
         </li>
     </ul>
 </div>
@@ -115,6 +116,42 @@ function watchButtons() {
     $('#mainContent').on('click', '#editBtn', event => {
         event.preventDefault();
         window.location.href = 'editProyect.html'
+    })
+
+    $('#mainContent').on('click', '#join', event => {
+        event.preventDefault();
+
+        let requests = proyect.owner.pendingRequests;
+        requests.push({
+            proyect: proyect._id,
+            sender: localStorage.getItem('userID'),
+            name: localStorage.getItem('userName'),
+            proyectName: proyect.name
+        });
+
+        const newUser = {
+            pendingRequests: requests
+        }
+
+        console.log(newUser);
+
+        $.ajax({
+            url: '/api/users/update/' + proyect.owner._id,
+            method: 'PUT',
+            contentType: 'application/json; charset=utf-8',
+            dataTye: 'json',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            },
+            data: JSON.stringify(newUser),
+            succes: function(responseJSON) {
+                console.log(responseJSON);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+
+        })
     })
 }
 

@@ -34,7 +34,7 @@ router.post('/login', jsonParser, (req, res) => {
                 expiresIn: 60 * 60
             });
 
-            return res.status(200).json({token: token, id: user._id});
+            return res.status(200).json({token: token, id: user._id, firstName: user.firstName + ' ' + user.lastName});
         })
         .catch(error => {
             if (error.code === 404) {

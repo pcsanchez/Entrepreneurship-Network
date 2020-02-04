@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" integrity="sha384-REHJTs1r2ErKBuJB0fCK99gCYsVjwxHrSU0N7I1zl9vZbggVJXRMsv/sLlOAGb4M" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/editProyect.css">
+    <link rel="stylesheet" href="./css/otherProfile.css">
 </head>
 <body>
     <div class="text-center bg-dark" id="mobile-logo">
@@ -16,34 +16,33 @@
     </div>
     <nav class="navbar navbar-dark bg-dark d-flex flex-row justify-content-start">
         <a href="#" class="navbar-brand logo" id="logo">Delta</a>
-        <div class="navbar-nav">
-            <a href="#" class="nav-item nav-link active ml-2">Explore</a>
-        </div>
         <div class="navbar-nav d-flex flex-row" id="profile">
             <a href="#" class="nav-item nav-link active mr-3" id="plusBtn"><i class="fas fa-plus"></i></a>
             <a href="#" id="profileBtn" class="nav-item nav-link active">Profile</a>
         </div>
     </nav>
     <main>
-        <h1>Edit Proyect!</h1>
-        <section>
-            <form id="editForm">
-                <div class="form-group">
-                    <label for="name">Proyect Name:</label>
-                    <input type="text" name="name" id="name" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="img">Proyect Image:</label>
-                    <input placeholder="Url of image" type="text" name="img" id="img" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="desc">Description:</label>
-                    <textarea placeholder="Tell us a little something about the proyect..." class="form-control" name="desc" id="desc" rows="5"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Update!</button>
-                <button id="cancel" class="btn btn-danger">Cancel</button>
-            </form>
-        </section>
+        <div class="userInfo">
+            <h1 id="userName"></h1>
+            <h4 id="userBio"></h4>
+        </div>
+
+        <hr>
+
+        <div class="userProyects mt-3">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Owned Proyects</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Collaborations</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">Owned Proyects</div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">Collaborations</div>
+              </div>
+        </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
@@ -53,6 +52,6 @@
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
-    <script src="./js/editProyect.js"></script>
+    <script src="./js/otherProfile.js"></script>
 </body>
 </html>

@@ -10,8 +10,6 @@ main {
 }
 
 #userContent {
-    width: 0%;
-    padding: 10px;
     display: none;
 }
 
@@ -42,4 +40,26 @@ main {
 
 .hoverable {
     cursor: pointer;
+}
+
+@media (min-width:521px) {
+    #userContent {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+    }
+
+    #content {
+        width: 70%;
+    }
+
+    #popularProyects {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .card {
+        width: 30%;
+        margin: 5px;
+    }
 }

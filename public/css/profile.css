@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: row;
+}
+
+.editDiv {
+    margin-left: auto;
+    padding: 5px;
+}
+
+.proyect {
+    border: 1px solid #282b36;
+    margin: 5px;
+}

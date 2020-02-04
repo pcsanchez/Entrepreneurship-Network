@@ -60,7 +60,7 @@ function displayProyects(container, response) {
                 <div class="card-body">
                     <h3 class="hoverable card-title" value="${el._id}">${el.name}</h3>
                     <p class="hoverable card-text pdesc" value="${el._id}">${el.description}</p>
-                    <p class="card-text">By ${el.owner.firstName} ${el.owner.lastName}</p>
+                    <p class="card-text author" value="${el.owner._id}">By ${el.owner.firstName} ${el.owner.lastName}</p>
                     <p class="card-text">${cats}</p>
                 </div>
             </div>
@@ -100,7 +100,10 @@ function displaySearchedProyects(container, response, term) {
 
     let matchContent = response.filter(proyect => proyect.description.toLowerCase().includes(term));
 
+    let matchCat = response.filter(proyect=> proyect.categories.includes(term));
+
     Array.prototype.push.apply(results, matchContent);
+    Array.prototype.push.apply(results,matchCat);
 
     $(container).empty();
 
@@ -149,6 +152,15 @@ function watchButtons() {
     $('#profileBtn').on('click', event => {
         event.preventDefault();
         window.location.href = 'profile.html';
+    })
+
+
+    $('#popularProyects').on('click', '.author', event => {
+        event.preventDefault();
+        const id = $(event.target).attr('value');
+        localStorage.setItem('searchedID', id);
+
+        window.location.href = 'otherProfile.html';
     })
 
     $('#popularProyects').on('click', '.pcat', event => {

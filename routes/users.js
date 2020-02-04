@@ -120,9 +120,9 @@ router.put('/update/:id', jsonParser, async (req, res) => {
                 throw new ServerError(404, 'ID not found');
             }
 
-            const {firstName, lastName, bio, pendingInvites} = req.body;
+            const {firstName, lastName, bio, pendingInvites, pendingRequests} = req.body;
 
-            if(!firstName && !lastName && !bio && !pendingInvites) {
+            if(!firstName && !lastName && !bio && !pendingInvites && !pendingRequests) {
                 res.statusMessage = 'No parameters were changed for the update';
                 return res.status(409).send();
             }
@@ -143,6 +143,10 @@ router.put('/update/:id', jsonParser, async (req, res) => {
 
             if(pendingInvites) {
                 updatedUser.pendingInvites = pendingInvites;
+            }
+
+            if(pendingRequests) {
+                updatedUser.pendingRequests = pendingRequests;
             }
 
             return UserController.update(id, updatedUser);

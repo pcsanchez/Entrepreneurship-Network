@@ -38,6 +38,7 @@ function watchForm() {
 }
 
 function login(response) {
+    localStorage.setItem('userName', response.firstName)
     localStorage.setItem('token', response.token);
     localStorage.setItem('userID', response.id);
     window.location.href = 'feed.html';

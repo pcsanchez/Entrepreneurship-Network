@@ -76,7 +76,7 @@ function displayData(response) {
     let inviteElements = '';
     response.pendingInvites.forEach(el => {
         inviteElements +=`
-        <div class="invites">
+        <div class="invites proyect">
             <p>${el.owner.firstName} invited you to collaborate in ${el.name}</p>
             <button class="btn btn-success yesBtn" value="${el._id}">Accept</button>
             <button class="btn btn-danger noBtn" value="${el._id}">Decline</button>
@@ -86,6 +86,17 @@ function displayData(response) {
     $('#pills-contact').append(`
         ${inviteElements}
     `)
+    console.log(response);
+    $('#requests').empty();
+    response.pendingRequests.forEach(el => {
+        $('#requests').append(`
+            <div class="request proyect">
+                <p>${el.name} wants to join ${el.proyectName}!</p>
+                <button class="btn btn-success yesReqBtn" value="${el.proyect} ${el.sender} ${el._id}">Accept</button>
+                <button class="btn btn-danger noReqBtn" value="${el.proyect} ${el.sender} ${el._id}">Decline</button>
+            </div>
+        `);
+    })
 }
 
 function watchButtons() {
@@ -155,6 +166,104 @@ function watchButtons() {
     $('#profileBtn').on('click', event => {
         event.preventDefault();
         window.location.href = 'profile.html';
+    })
+
+    $('#requests').on('click', '.yesReqBtn', event => {
+        event.preventDefault();
+        let params = $(event.target).attr('value').split(' ');
+
+        $.ajax({
+            url: '/api/proyects/' + params[0],
+            method: 'GET',
+            dataType: 'json',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            },
+            success: function(responseJSON) {
+                let teamMembers = responseJSON.teamMembers;
+                teamMembers.push(params[1]);
+                const updatedProyect =  {
+                    teamMembers: teamMembers
+                }
+
+                $.ajax({
+                    url: '/api/proyects/update/' + params[0],
+                    method: 'PUT',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    headers: {
+                        authorization: 'Bearer ' + localStorage.getItem('token')
+                    },
+                    data: JSON.stringify(updatedProyect),
+                    success: function(responseJSON2) {
+                        console.log(responseJSON2);
+                        let pending = user.pendingRequests;
+                        let params = $(event.target).attr('value').split(' ');
+                        pending = pending.filter(el => el._id != params[2]);
+                        
+                        const newUser = {
+                            pendingRequests: pending
+                        }
+                
+                        $.ajax({
+                            url: '/api/users/update/' + user._id,
+                            method: 'PUT',
+                            contentType: 'application/json; charset=urf-8',
+                            dataType: 'json',
+                            headers: {
+                                authorization: 'Bearer ' + localStorage.getItem('token')
+                            },
+                            data: JSON.stringify(newUser),
+                            success: function() {
+                                fetchUser();
+                            },
+                            error: function(error) {
+                                console.log(error);
+                            }
+                
+                        })
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                })
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        })
+    })
+
+    $('#requests').on('click', '.noReqBtn', event => {
+        event.preventDefault();
+
+        let pending = user.pendingRequests;
+        let params = $(event.target).attr('value').split(' ');
+        pending = pending.filter(el => el._id != params[2]);
+        
+        const newUser = {
+            pendingRequests: pending
+        }
+
+        console.log(pending);
+
+        $.ajax({
+            url: '/api/users/update/' + user._id,
+            method: 'PUT',
+            contentType: 'application/json; charset=urf-8',
+            dataType: 'json',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            },
+            data: JSON.stringify(newUser),
+            success: function() {
+                fetchUser();
+            },
+            error: function(error) {
+                console.log(error);
+            }
+
+        })
     })
 }
 

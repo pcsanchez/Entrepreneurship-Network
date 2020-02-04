@@ -9,6 +9,7 @@ function displayData() {
         success: function(responseJSON) {
             $('#name').val(`${responseJSON.name}`);
             $('#desc').val(`${responseJSON.description}`);
+            $('#img').val(`${responseJSON.image}`);
         },
         error: function(error) {
             console.log(error);
@@ -47,6 +48,7 @@ function watchForm() {
 
         const updatedProyect = {
             name: $('#name').val(),
+            image: $('#img').val(),
             description: $('#desc').val()
         }
 
