@@ -46,11 +46,11 @@ main {
     #userContent {
         display: flex;
         flex-direction: column;
-        width: 30%;
+        width: 20%;
     }
 
     #content {
-        width: 70%;
+        width: 80%;
     }
 
     #popularProyects {
@@ -62,4 +62,13 @@ main {
         width: 30%;
         margin: 5px;
     }
+
+    #logo {
+        display: inline;
+    }
+
+    #mobile-logo {
+        display: none;
+    }
+
 }

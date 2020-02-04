@@ -12,17 +12,29 @@
     <main>
         <h1>Register to Delta</h1>
         <form id="registerForm">
-            <label for="fnameField">First Name:</label>
-            <input type="text" name="fnameField" id="fnameField">
-            <label for="lnameField">Last Name:</label>
-            <input type="text" name="lnameField" id="lnameField">
-            <label for="emailField">Email:</label>
-            <input type="text" name="emailField" id="emailField">
-            <label for="passwordField">Password:</label>
-            <input type="password" name="passwordField" id="passwordField">
-            <label for="cpasswordField">Confirm Password:</label>
-            <input type="password" name="cpasswordField" id="cpasswordField">
-            <button type="submit">Register!</button>
+            <div class="form-group">
+                <label for="fnameField">First Name:</label>
+                <input class="form-control" type="text" name="fnameField" id="fnameField">
+            </div>
+            <div class="form-group">
+                <label for="lnameField">Last Name:</label>
+                <input class="form-control" type="text" name="lnameField" id="lnameField">
+            </div>
+            <div class="form-group">
+                <label for="emailField">Email:</label>
+                <input  class="form-control" type="text" name="emailField" id="emailField">
+            </div>
+            <div class="form-group">
+                <label for="passwordField">Password:</label>
+                <input class="form-control" type="password" name="passwordField" id="passwordField">
+            </div>
+            <div class="form-group">
+                <label for="cpasswordField">Confirm Password:</label>
+                <input class="form-control" type="password" name="cpasswordField" id="cpasswordField">
+            </div>
+            <div id="btnDiv">
+                <button id="registerBtn" type="submit" class="btn btn-primary">Register!</button>
+            </div>
         </form>
     </main>
     <script

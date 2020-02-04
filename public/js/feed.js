@@ -73,7 +73,8 @@ function displaySideBarProyects(container, response, term) {
 
     response.forEach(el => {
         $(container).append(`
-            <h5>${el.name}</h5>
+            <h3>${el.name}</h3>
+            <h5>${el.description}</h5>
         `)
     })
 }
@@ -195,7 +196,7 @@ function watchForm() {
     $('#searchForm').on('submit', event => {
         event.preventDefault();
 
-        const searchTerm = $('#searchTerm').val();
+        const searchTerm = $('#searchTerm').val().toLowerCase();
 
         $.ajax({
             url: '/api/proyects/exclude/' + localStorage.getItem('userID'),
