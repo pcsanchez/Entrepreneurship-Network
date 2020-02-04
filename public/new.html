@@ -6,22 +6,58 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Delta</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" integrity="sha384-REHJTs1r2ErKBuJB0fCK99gCYsVjwxHrSU0N7I1zl9vZbggVJXRMsv/sLlOAGb4M" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/new.css">
 </head>
 <body>
-    <header>
-        <h1>Create a New Proyect</h1>
-    </header>
+    <div class="text-center bg-dark" id="mobile-logo">
+        <h1 class="logo hoverable">Delta</h1>
+    </div>
+    <nav class="navbar navbar-dark bg-dark d-flex flex-row justify-content-start">
+        <a href="#" class="navbar-brand logo" id="logo">Delta</a>
+        <form class="form-inline" id="searchForm">
+            <input class="form-control mr-sm-2" id="searchTerm" type="search" placeholder="Search proyects">
+        </form>
+        <div class="navbar-nav">
+            <a href="#" class="nav-item nav-link active ml-2">Explore</a>
+        </div>
+        <div class="navbar-nav d-flex flex-row" id="profile">
+            <a href="#" class="nav-item nav-link active mr-3" id="plusBtn"><i class="fas fa-plus"></i></a>
+            <a href="#" class="nav-item nav-link active">Profile</a>
+        </div>
+    </nav>
     <main>
+        <h1>Create a New Proyect</h1>
         <section>
             <form id="newForm">
-                <label for="name">Proyect Name:</label>
-                <input type="text" name="name" id="name">
-                <label for="desc">Description:</label>
-                <input type="text" name="desc" id="desc">
-                <label for="cat">Category:</label>
-                <input type="text" name="cat" id="cat">
-                <button type="submit">Create!</button>
+                <div class="form-group">
+                    <label for="name">Proyect Name:</label>
+                    <input type="text" name="name" id="name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="desc">Description:</label>
+                    <textarea rows="5" type="text" name="desc" id="desc" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select multiple name="category" id="category" class="form-control">
+                        <option value="technology">Technology</option>
+                        <option value="art">Art</option>
+                        <option value="cinema">Cinema</option>
+                        <option value="video">Video</option>
+                        <option value="food">Food</option>
+                        <option value="design">Design</option>
+                        <option value="games">Games</option>
+                        <option value="fashion">Fashion</option>
+                        <option value="music">Music</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="members">Invite Collaborators:</label>
+                    <textarea placeholder="Enter emails separated by enters" class="form-control" name="members" id="members" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Create!</button>
             </form>
         </section>
     </main>

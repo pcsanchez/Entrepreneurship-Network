@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
+#mainContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.cSection {
+    border: 5px solid red;
+}

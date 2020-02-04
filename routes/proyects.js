@@ -59,7 +59,7 @@ router.get('/:id', jsonParser, middleware.isLoggedIn, (req, res) => {
         .catch(error => {
             console.log(error);
             if (error.code === 404) {
-                res.statusMessage = 'No user found with the given id';
+                res.statusMessage = 'No proyect found with the given id';
                 return res.status(404).send();
             } else {
                 res.statusMessage = 'DB error';
@@ -143,7 +143,8 @@ router.post('/create', jsonParser, middleware.isLoggedIn, (req, res) => {
                 description, description,
                 categories: categories,
                 image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
-                owner: user.id
+                owner: user.id,
+                teamMembers: []
             }
 
             return ProyectController.create(newProyect)
@@ -181,10 +182,10 @@ router.put('/update/:id', jsonParser, middleware.isLoggedIn, (req ,res) => {
                     }
 
                     console.log(proyect.owner);
-                    if(proyect.owner._id != user.id) {
-                        res.statusMessage = 'Restricted';
-                        return res.status(403).send();
-                    }
+                    // if(proyect.owner._id != user.id) {
+                    //     res.statusMessage = 'Restricted';
+                    //     return res.status(403).send();
+                    // }
 
                     const {name, description, image, categories, teamMembers} = req.body;
 

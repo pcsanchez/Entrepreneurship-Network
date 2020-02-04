@@ -1,0 +1,18 @@
+#profile {
+    margin-left: auto;
+}
+
+#logo {
+    display: none;
+}
+
+#mobile-logo {
+    color: white;
+    margin: 0px;
+    margin-bottom: 0px;
+    border-bottom: 1px solid white;
+}
+
+#mobile-logo > h1 {
+    margin-bottom: 0px;
+}

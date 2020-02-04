@@ -10,9 +10,25 @@
 </head>
 <body>
     <main>
-        <h1>Welcome To Delta</h1>
-        <button id="loginBtn">Login</button>
-        <button id="registerBtn">Register</button>
+        <div id="title">
+            <h1>Welcome To Delta</h1>
+        </div>
+        <div id="form">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="emailField">Email:</label>
+                    <input type="text" id="emailField" name="emailField" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="passwordField">Password:</label>
+                    <input type="password" id="passwordField" name="passwordField" class="form-control">
+                </div>
+                <button id="loginBtn" type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+        <div class="foot">
+            <p id="registerBtn">New User? Register</p>
+        </div>
     </main>
     <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"

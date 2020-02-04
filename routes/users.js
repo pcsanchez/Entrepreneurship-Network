@@ -20,8 +20,8 @@ router.get('/all', jsonParser, (req, res) => {
         });
 });
 
-router.get('/email', jsonParser, (req, res) => {
-    const email = req.query.email;
+router.get('/email/:e', jsonParser, (req, res) => {
+    const email = req.params.e;
 
     if(!email) {
         res.statusMessage = 'No email given in request';
@@ -85,7 +85,8 @@ router.post('/create', jsonParser, (req, res) => {
                 lastName: lastName,
                 email: email,
                 password: password,
-                bio: ''
+                bio: '',
+                pendingInvites: []
             }
 
             return UserController.create(newUser);
@@ -119,9 +120,9 @@ router.put('/update/:id', jsonParser, async (req, res) => {
                 throw new ServerError(404, 'ID not found');
             }
 
-            const {firstName, lastName, bio} = req.body;
+            const {firstName, lastName, bio, pendingInvites} = req.body;
 
-            if(!firstName && !lastName && !bio) {
+            if(!firstName && !lastName && !bio && !pendingInvites) {
                 res.statusMessage = 'No parameters were changed for the update';
                 return res.status(409).send();
             }
@@ -138,6 +139,10 @@ router.put('/update/:id', jsonParser, async (req, res) => {
 
             if(bio) {
                 updatedUser.bio = bio;
+            }
+
+            if(pendingInvites) {
+                updatedUser.pendingInvites = pendingInvites;
             }
 
             return UserController.update(id, updatedUser);

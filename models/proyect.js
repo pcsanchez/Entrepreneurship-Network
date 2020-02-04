@@ -2,18 +2,6 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-const categoryEnum = {
-    'ART': 'art',
-    'CINEMA': 'cinema',
-    'VIDEO': 'video',
-    'FOOD': 'food',
-    'DESIGN': 'design',
-    'GAMES': 'games',
-    'FASHION': 'fashion',
-    'MUSIC': 'music',
-    'TECHNOLOGY': 'technology'
-}
-
 let proyectCollection = mongoose.Schema( {
     name: {type: String},
     image: {type: String},
@@ -26,7 +14,14 @@ let proyectCollection = mongoose.Schema( {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
     }],
-    categories: [{type: String}]
+    categories: [{type: String}],
+    fiveStars: 0,
+    fourStars: 0,
+    threeStars: 0,
+    twoStars: 0,
+    oneStars: 0,
+    zeroStars: 0,
+    
 });
 
 const Proyect = mongoose.model('proyects', proyectCollection);

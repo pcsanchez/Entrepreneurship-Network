@@ -6,6 +6,10 @@ const userCollection = mongoose.Schema({
     firstName: {type: String},
     lastName: {type: String},
     bio: {type: String},
+    pendingInvites: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'proyects'
+    }],
     email: {type: String},
     password: String
 });
@@ -23,7 +27,10 @@ const UserController = {
             });
     },
     getById: function(id) {
-        return User.findById(id)
+        return User.findById(id).populate({
+            path: 'pendingInvites',
+            populate: {path: 'owner'}
+        })
             .then(user => {
                 return user;
             })

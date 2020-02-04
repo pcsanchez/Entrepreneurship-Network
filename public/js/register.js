@@ -17,7 +17,7 @@ function watchForm() {
             data: JSON.stringify(newUser),
             success: function(responseJSON) {
                 console.log('success');
-                window.location.href = 'login.html';
+                window.location.href = 'index.html';
             },
             error: function(err) {
                 console.log(err);

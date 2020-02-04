@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+#userContent {
+    width: 0%;
+    padding: 10px;
+    display: none;
+}
+
+#content {
+    width: 100%;
+    padding: 10px;
+}
+
+.info {
+    color: gray;
+}
+
+.pdesc {
+    color: gray;
+}
+
+.pcat {
+    color: gray;
+    font-size: small;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.proy {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.hoverable {
+    cursor: pointer;
+}

@@ -6,23 +6,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Delta</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" integrity="sha384-REHJTs1r2ErKBuJB0fCK99gCYsVjwxHrSU0N7I1zl9vZbggVJXRMsv/sLlOAGb4M" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/feed.css">
 </head>
 <body>
-    <header>
-        <h1>Feed</h1>
-    </header>
+    <div class="text-center bg-dark" id="mobile-logo">
+        <h1 class="logo hoverable">Delta</h1>
+    </div>
+    <nav class="navbar navbar-dark bg-dark d-flex flex-row justify-content-start">
+        <a href="#" class="navbar-brand logo" id="logo">Delta</a>
+        <form class="form-inline" id="searchForm">
+            <input class="form-control mr-sm-2" id="searchTerm" type="search" placeholder="Search proyects">
+        </form>
+        <div class="navbar-nav">
+            <a href="#" class="nav-item nav-link active ml-2">Explore</a>
+        </div>
+        <div class="navbar-nav d-flex flex-row" id="profile">
+            <a href="#" class="nav-item nav-link active mr-3" id="plusBtn"><i class="fas fa-plus"></i></a>
+            <a href="#" id="profileBtn" class="nav-item nav-link active">Profile</a>
+        </div>
+    </nav>
     <main>
         <section id="userContent">
             <h4>Your Proyects</h4>
             <button class="btn btn-success" id="newBtn">New Proyect</button>
-            <div id="ownProyects"></div>
+            <div id="ownProyects" class="proyectContainer"></div>
             <h4>Joined Proyects</h4>
-            <div id="memberProyects"></div>
+            <div id="memberProyects" class="proyectContainer"></div>
         </section>
         <section id="content">
-            <h4>Popular Proyects</h4>
-            <div id="popularProyects"></div>
+            <div id="popularProyects" class="proyectContainer"></div>
         </section>
     </main>
     <script
